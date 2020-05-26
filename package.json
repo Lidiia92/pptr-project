@@ -1,0 +1,31 @@
+{
+	"name": "pptr-project",
+	"version": "1.0.0",
+	"description": "Automated software testing with Puppeteer",
+	"main": "index.js",
+	"scripts": {
+		"test": "node ./node_modules/mocha/bin/mocha --timeout=30000 ./tests"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Lidiia92/pptr-project.git"
+	},
+	"keywords": [
+		"Puppeteer",
+		"Mocha",
+		"Chai",
+		"Automation"
+	],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Lidiia92/pptr-project/issues"
+	},
+	"homepage": "https://github.com/Lidiia92/pptr-project#readme",
+	"dependencies": {
+		"chai": "^4.2.0",
+		"mocha": "^7.2.0",
+		"prettier": "^2.0.5",
+		"puppeteer": "^3.1.0"
+	}
+}
