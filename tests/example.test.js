@@ -10,7 +10,9 @@ describe('First Test', () => {
 		});
 		const page = await browser.newPage();
 
-		// await page.goto('http://example.com');
+		//Set default timeout
+		await page.setDefaultTimeout(10000);
+		await page.setDefaultNavigationTimeout(20000);
 
 		await page.goto('https://devexpress.github.io/testcafe/example');
 		await page.type('#developer-name', 'Mike');
@@ -32,6 +34,23 @@ describe('First Test', () => {
 		expect(title).to.be.a('string', 'Example Domain');
 		expect(url).to.include('example.com');
 		expect(count).to.equal(2);
+
+		//Key press simulation
+		await page.waitForSelector('#searchTerm');
+		await page.type('#searchTerm', 'Hello world');
+		await page.keyboard.press('Enter');
+
+		//Wait for xPath
+		await page.waitForXPath('//h1');
+
+		//Element not exists
+		await page.waitForSelector('#signin_button');
+		await page.click('#signin_button');
+
+		//1.
+		await page.waitFor(() => !document.querySelector('#signin_button'));
+		//2.
+		await page.waitForSelector('#signin_button', { hidden: true });
 
 		await browser.close();
 	});
