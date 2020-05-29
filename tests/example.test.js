@@ -2,18 +2,34 @@ const puppeteer = require('puppeteer');
 const expect = require('chai').expect;
 
 describe('First Test', () => {
-	it('should launch the browser', async function () {
-		const browser = await puppeteer.launch({
+	let browser;
+	let page;
+	before(async function () {
+		browser = await puppeteer.launch({
 			headless: false,
-			slowMo: 500,
+			slowMo: 100,
 			devtools: false,
 		});
-		const page = await browser.newPage();
+		page = await browser.newPage();
 
 		//Set default timeout
 		await page.setDefaultTimeout(10000);
 		await page.setDefaultNavigationTimeout(20000);
+	});
 
+	after(async function () {
+		await browser.close();
+	});
+
+	beforeEach(async function () {
+		//runs before each test step
+	});
+
+	afterEach(async function () {
+		//runs after each test step
+	});
+
+	it('should launch the browser', async function () {
 		await page.goto('https://devexpress.github.io/testcafe/example');
 		await page.type('#developer-name', 'Mike');
 		await page.click('#tried-test-cafe', { clickCount: 1 });
@@ -51,7 +67,5 @@ describe('First Test', () => {
 		await page.waitFor(() => !document.querySelector('#signin_button'));
 		//2.
 		await page.waitForSelector('#signin_button', { hidden: true });
-
-		await browser.close();
 	});
 });
