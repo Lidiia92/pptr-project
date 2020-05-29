@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors')['devicesMap'];
 
+const { click, getText, getCount } = require('../lib/helpers');
+
 describe('Device Emulation', () => {
 	let browser;
 	let page;
@@ -11,7 +13,9 @@ describe('Device Emulation', () => {
 			slowMo: 100,
 			devtools: false,
 		});
-		page = await browser.newPage();
+
+		const context = await browser.createIncognitoBrowserContext();
+		page = await context.newPage();
 
 		await page.setDefaultTimeout(10000);
 		await page.setDefaultNavigationTimeout(20000);
@@ -39,5 +43,7 @@ describe('Device Emulation', () => {
 		await page.emulate(devices['iPhone X']);
 		await page.goto('https://www.example.com');
 		await page.waitFor(5000);
+
+		await getText(page, 'h1');
 	});
 });
