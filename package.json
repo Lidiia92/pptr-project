@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "node ./node_modules/mocha/bin/mocha --timeout=30000 ./tests",
 		"test:device": "node ./node_modules/mocha/bin/mocha --timeout=30000 ./tests/device.test.js",
-		"test:e2e": "node ./node_modules/mocha/bin/mocha --timeout=30000 ./tests/e2e/*.test.js"
+		"test:e2e": "node ./node_modules/mocha/bin/mocha --timeout=100000 ./tests/e2e/*.test.js"
 	},
 	"repository": {
 		"type": "git",

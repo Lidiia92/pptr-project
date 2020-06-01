@@ -6,7 +6,7 @@ describe('Login Test', () => {
 
 	before(async function () {
 		browser = await puppeteer.launch({
-			headless: false,
+			headless: true,
 			slowMo: 100,
 			devtools: false,
 		});
@@ -28,8 +28,8 @@ describe('Login Test', () => {
 
 		await page.waitForSelector('#login_form');
 		await page.type('#user_login', 'invalid name');
-		await page.type('#user_password', 'invalid password'),
-			await page.click('#user_remember_me');
+		await page.type('#user_password', 'invalid password');
+		await page.click('#user_remember_me');
 
 		await page.click('input[type="submit"]');
 
@@ -43,8 +43,8 @@ describe('Login Test', () => {
 
 		await page.waitForSelector('#login_form');
 		await page.type('#user_login', 'username');
-		await page.type('#user_password', 'password'),
-			await page.click('#user_remember_me');
+		await page.type('#user_password', 'password');
+		await page.click('#user_remember_me');
 
 		await page.click('input[type="submit"]');
 
